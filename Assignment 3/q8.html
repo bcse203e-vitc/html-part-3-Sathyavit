@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f9ff;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    form {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 500px;
+    }
+    h2 {
+      text-align: center;
+      color: #0277bd;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .radio-group label,
+    .checkbox-group label {
+      font-weight: normal;
+      margin-right: 15px;
+    }
+    input[type="submit"] {
+      background-color: #0277bd;
+      color: white;
+      padding: 10px;
+      font-size: 15px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    input[type="submit"]:hover {
+      background-color: #01579b;
+    }
+    .total {
+      font-weight: bold;
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<form oninput="calculateTotal()">
+  <h2>Travel Booking Form</h2>
+
+  <label for="fullname">Full Name</label>
+  <input type="text" id="fullname" name="fullname" required>
+
+  <label for="contact">Contact Email</label>
+  <input type="email" id="contact" name="contact" required>
+
+  <label for="destination">Destination</label>
+  <select id="destination" name="destination" required>
+    <option value="">-- Select --</option>
+    <option value="Paris">Paris</option>
+    <option value="Tokyo">Tokyo</option>
+    <option value="New York">New York</option>
+    <option value="Dubai">Dubai</option>
+    <option value="Sydney">Sydney</option>
+  </select>
+
+  <label for="date">Travel Date</label>
+  <input type="date" id="date" name="date" required>
+
+  <label for="travelers">Number of Travelers</label>
+  <input type="number" id="travelers" name="travelers" min="1" value="1" required>
+
+  <label>Travel Class</label>
+  <div class="radio-group">
+    <label><input type="radio" name="class" value="Economy" checked> Economy</label>
+    <label><input type="radio" name="class" value="Business"> Business</label>
+    <label><input type="radio" name="class" value="First"> First Class</label>
+  </div>
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" id="insurance"> Add Travel Insurance (+ ₹1000)</label>
+  </div>
+
+  <div class="total">
+    Total Cost: ₹<span id="totalCost">5000</span>
+  </div>
+
+  <input type="submit" value="Book Now">
+</form>
+
+<script>
+  function calculateTotal() {
+    const travelers = parseInt(document.getElementById('travelers').value) || 0;
+    const travelClass = document.querySelector('input[name="class"]:checked').value;
+    const insurance = document.getElementById('insurance').checked;
+
+    let pricePerPerson = 0;
+
+    switch (travelClass) {
+      case 'Economy':
+        pricePerPerson = 5000;
+        break;
+      case 'Business':
+        pricePerPerson = 10000;
+        break;
+      case 'First':
+        pricePerPerson = 20000;
+        break;
+    }
+
+    let total = pricePerPerson * travelers;
+    if (insurance) total += 1000;
+
+    document.getElementById('totalCost').innerText = total;
+  }
+</script>
+
+</body>
+</html>
