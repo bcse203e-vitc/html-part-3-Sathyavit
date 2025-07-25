@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    form {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .radio-group,
+    .checkbox-group {
+      margin-bottom: 10px;
+    }
+    .radio-group label,
+    .checkbox-group label {
+      font-weight: normal;
+      margin-right: 10px;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<form>
+  <h2>Event Registration</h2>
+
+  <label for="fullname">Full Name</label>
+  <input type="text" id="fullname" name="fullname" required>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10-digit number">
+
+  <label>Gender</label>
+  <div class="radio-group">
+    <label><input type="radio" name="gender" value="Male" required> Male</label>
+    <label><input type="radio" name="gender" value="Female"> Female</label>
+    <label><input type="radio" name="gender" value="Other"> Other</label>
+  </div>
+
+  <label for="age">Age Group</label>
+  <select name="age" id="age" required>
+    <option value="">-- Select Age Group --</option>
+    <option value="Under 18">Under 18</option>
+    <option value="18-25">18-25</option>
+    <option value="26-35">26-35</option>
+    <option value="36-50">36-50</option>
+    <option value="Above 50">Above 50</option>
+  </select>
+
+  <label>Topics of Interest</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="topics" value="AI"> AI</label>
+    <label><input type="checkbox" name="topics" value="Cybersecurity"> Cybersecurity</label>
+    <label><input type="checkbox" name="topics" value="Cloud"> Cloud</label>
+    <label><input type="checkbox" name="topics" value="Web Dev"> Web Dev</label>
+  </div>
+
+  <label for="comments">Additional Comments</label>
+  <textarea id="comments" name="comments" rows="4" placeholder="Your message..."></textarea>
+
+  <input type="submit" value="Register">
+</form>
+
+</body>
+</html>
